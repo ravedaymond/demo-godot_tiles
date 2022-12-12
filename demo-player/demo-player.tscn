@@ -1,0 +1,47 @@
+[gd_scene load_steps=7 format=3 uid="uid://cvfxrjtgb5idp"]
+
+[ext_resource type="Script" path="res://demo-player/demo-player.gd" id="1_6sbw5"]
+[ext_resource type="Texture2D" uid="uid://dt7syvq2gtqxe" path="res://demo-player/demo-player.png" id="2_7flk5"]
+[ext_resource type="Texture2D" uid="uid://c3bufb3g0nf6f" path="res://demo-player/demo-player-three_quarter.png" id="3_d2qhu"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jwife"]
+animations = [{
+"frames": [ExtResource("2_7flk5")],
+"loop": false,
+"name": &"default",
+"speed": 0.0
+}, {
+"frames": [ExtResource("3_d2qhu")],
+"loop": false,
+"name": &"three-quarter",
+"speed": 0.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qnrma"]
+size = Vector2(6, 6)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_efiv8"]
+size = Vector2(6, 4)
+
+[node name="demo-player" type="CharacterBody2D"]
+script = ExtResource("1_6sbw5")
+JUMP_VELOCITY = -200.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+frames = SubResource("SpriteFrames_jwife")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("RectangleShape2D_qnrma")
+
+[node name="CollisionShape2DThreeQuarter" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_efiv8")
+disabled = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+visible = false
+current = true
+editor_draw_limits = true
+editor_draw_drag_margin = true
